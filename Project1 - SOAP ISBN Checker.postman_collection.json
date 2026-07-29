@@ -1,0 +1,4920 @@
+{
+  "info": {
+    "_postman_id": "79b6221a-3ef2-4db0-9190-7a2f83766ee0",
+    "name": "# Project #1 - SOAP ISBN Checker",
+    "description": "## SOAP ISBN Checker\n\nThis collection interacts with the public daehosting.com ISBN SOAP web service to validate ISBN (International Standard Book Number) values. It is organized as a set of test cases that exercise both valid and invalid inputs.\n\n### Purpose\nIt demonstrates how to build and send SOAP XML requests from Postman to an ISBN validation service and verify the responses. Given an ISBN, the service checks the number's checksum and returns whether it is valid.\n\n### Service Details\n- Endpoint: https://webservices.daehosting.com/services/isbnservice.wso\n- Protocol: SOAP over HTTP POST\n- Header: Content-Type: text/xml; charset=utf-8\n\n### Requests / Test Cases\n- TC #1 Positive - valid: sends a well-formed, valid ISBN and expects a true validation result.\n- TC #2 Negative - Invalid: sends an invalid ISBN and expects a false validation result.\n\n### How to Use\n1. Send the request with a raw XML SOAP body containing the ISBN in the sISBN element.\n2. Inspect the XML response - the validation result element returns true or false.\n3. Use the positive and negative test cases to confirm the service behaves correctly for both valid and invalid ISBNs.\n\n### Notes\n- Requests and responses use raw XML to conform to the SOAP protocol.\n- Response parsing may be needed to extract the boolean validation result.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56389792",
+    "_collection_link": "https://go.postman.co/collection/56389792-79b6221a-3ef2-4db0-9190-7a2f83766ee0?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "TC #1 Positive - valid",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\r\n      <sISBN>978-0-306-40615-7</sISBN>\r\n    </IsValidISBN13>\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "TC #1 Positive - valid",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\r\n      <sISBN>978-0-306-40615-7</sISBN>\r\n    </IsValidISBN13>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 11:49:10 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "302"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>true</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #19 Negative- Invalid Header",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "abc",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\r\n      <sISBN>978-0-306-40615-7</sISBN>\r\n    </IsValidISBN13>\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "TC #19 Negative- Invalid Header",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "abc",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\r\n      <sISBN>978-0-306-40615-7</sISBN>\r\n    </IsValidISBN13>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Unsupported Media Type",
+          "code": 415,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 415
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:05:54 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "76"
+            }
+          ],
+          "cookie": [],
+          "body": "The server cannot service the request because the media type is unsupported."
+        }
+      ]
+    },
+    {
+      "name": "TC #2 Negative - In valid",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\r\n      <sISBN>abc</sISBN>\r\n    </IsValidISBN13>\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "TC #2 Negative - In valid",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\r\n      <sISBN>abc</sISBN>\r\n    </IsValidISBN13>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:06:08 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #3 - -2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>-2</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>-2</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #3 - -2",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>-2</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:06:22 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #4 - Koyel",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>Koyel</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>Koyel</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #4 - Koyel",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>Koyel</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:08:08 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #5 - Koyel123",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>Koyel123</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>Koyel123</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #5 - Koyel123",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>Koyel123</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:08:59 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #6 - special chars",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>!@#$%^</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>!@#$%^</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #6 - special chars",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>!@#$%^</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:10:09 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #7 - 123Koyel",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>123Koyel</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>123Koyel</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #7 - 123Koyel",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>123Koyel</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:10:46 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #8 - 0",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>0</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>0</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #8 - 0",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>0</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:11:10 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #9 - blank",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN></sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN></sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #9 - blank",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN></sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:11:30 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #10 - null",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>null</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>null</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #10 - null",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>null</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:11:48 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #11 - 16 digit number",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>9876543210987654</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>9876543210987654</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #11 - 16 digit number",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>9876543210987654</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:12:06 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #12 - %%%Koyel%%%",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>%%%Koyel%%%</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>%%%Koyel%%%</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #12 - %%%Koyel%%%",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>%%%Koyel%%%</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:13:18 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #13 - 21.03",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>21.03</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>21.03</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #13 - 21.03",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>21.03</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:13:33 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #14 - 0x876548",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>0x876548</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>0x876548</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #14 - 0x876548",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>0x876548</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:13:48 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #15 - KOYEL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>KOYEL</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>KOYEL</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #15 - KOYEL",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>KOYEL</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:14:02 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #16 - Arabic text",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>أنا بخير، شكراً</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>أنا بخير، شكراً</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #16 - Arabic text",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>أنا بخير، شكراً</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:14:23 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #17 - Chinese text",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>大家好</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>大家好</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #17 - Chinese text",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>大家好</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:14:53 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #18 - Japanese text",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>もしもし</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://webservices.daehosting.com/services/isbnservice.wso\" -H \"Content-Type: text/xml; charset=utf-8\" --data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>もしもし</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>'"
+      },
+      "response": [
+        {
+          "name": "TC #18 - Japanese text",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>もしもし</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:15:17 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #20 Negative - Wrong Content-Type Header",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a valid SOAP body but with wrong Content-Type header (application/json instead of text/xml). Expects the server to reject the request."
+      },
+      "response": [
+        {
+          "name": "TC #20 Negative - Wrong Content-Type Header",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Unsupported Media Type",
+          "code": 415,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 415
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:15:34 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "76"
+            }
+          ],
+          "cookie": [],
+          "body": "The server cannot service the request because the media type is unsupported."
+        }
+      ]
+    },
+    {
+      "name": "TC #21 Negative - Missing Content-Type Header",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a valid SOAP body with no Content-Type header. Expects the server to reject or mishandle the request."
+      },
+      "response": [
+        {
+          "name": "TC #21 Negative - Missing Content-Type Header",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Unsupported Media Type",
+          "code": 415,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 415
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:15:46 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "76"
+            }
+          ],
+          "cookie": [],
+          "body": "The server cannot service the request because the media type is unsupported."
+        }
+      ]
+    },
+    {
+      "name": "TC #22 Negative - Invalid SOAPAction Header",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          },
+          {
+            "key": "SOAPAction",
+            "value": "\"InvalidAction\"",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a valid SOAP body with an incorrect SOAPAction header value. Expects the server to return a SOAP fault or error."
+      },
+      "response": [
+        {
+          "name": "TC #22 Negative - Invalid SOAPAction Header",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              },
+              {
+                "key": "SOAPAction",
+                "value": "\"InvalidAction\"",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:16:06 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "302"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>true</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #23 Negative - Malformed Accept Header",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          },
+          {
+            "key": "Accept",
+            "value": "application/pdf",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a valid SOAP body with an unsupported Accept header. Expects the server to ignore or reject the Accept type."
+      },
+      "response": [
+        {
+          "name": "TC #23 Negative - Malformed Accept Header",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "application/pdf",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:16:22 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "302"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>true</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #24 Negative - Wrong Endpoint Path",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wrong",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wrong"
+          ]
+        },
+        "description": "Sends a valid SOAP request to a non-existent endpoint path. Expects a 404 Not Found response."
+      },
+      "response": [
+        {
+          "name": "TC #24 Negative - Wrong Endpoint Path",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wrong",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wrong"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 404
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:16:35 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "1245"
+            }
+          ],
+          "cookie": [],
+          "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n    <head>\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\n        <title>404 - File or directory not found.</title>\n        <style type=\"text/css\">\n            <!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px 10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;} \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0 0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n\n        </style>\n    </head>\n    <body>\n        <div id=\"header\">\n            <h1>Server Error</h1>\n        </div>\n        <div id=\"content\">\n            <div class=\"content-container\">\n                <fieldset>\n                    <h2>404 - File or directory not found.</h2>\n                    <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>\n                </fieldset>\n            </div>\n        </div>\n    </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "name": "TC #25 Negative - Wrong Operation in Query Param",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso?op=NonExistentOperation",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ],
+          "query": [
+            {
+              "key": "op",
+              "value": "NonExistentOperation"
+            }
+          ]
+        },
+        "description": "Sends a valid SOAP body but with a non-existent operation in the query string. Expects a SOAP fault or 404."
+      },
+      "response": [
+        {
+          "name": "TC #25 Negative - Wrong Operation in Query Param",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso?op=NonExistentOperation",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ],
+              "query": [
+                {
+                  "key": "op",
+                  "value": "NonExistentOperation"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:17:38 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "302"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>true</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #26 Negative - Wrong Host / Typo Domain",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting-typo.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting-typo",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a valid SOAP request to a misspelled/non-existent domain. Expects a DNS resolution failure or connection error."
+      },
+      "response": []
+    },
+    {
+      "name": "TC #27 Negative - HTTP instead of HTTPS",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "http",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a valid SOAP request over plain HTTP instead of HTTPS. Expects a redirect or connection failure depending on server config."
+      },
+      "response": [
+        {
+          "name": "TC #27 Negative - HTTP instead of HTTPS",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "http",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Cache-Control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "Server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "Web-Service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "Permissions-Policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 09 Jul 2026 12:18:37 GMT"
+            },
+            {
+              "key": "Content-Length",
+              "value": "302"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>true</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #28 Negative - Malformed XML Body",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a SOAP request with malformed XML (unclosed sISBN tag). Expects a SOAP fault or HTTP 500."
+      },
+      "response": [
+        {
+          "name": "TC #28 Negative - Malformed XML Body",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 500
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:18:58 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "1208"
+            }
+          ],
+          "cookie": [],
+          "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n    <head>\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\n        <title>500 - Internal server error.</title>\n        <style type=\"text/css\">\n            <!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px 10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;} \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0 0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n\n        </style>\n    </head>\n    <body>\n        <div id=\"header\">\n            <h1>Server Error</h1>\n        </div>\n        <div id=\"content\">\n            <div class=\"content-container\">\n                <fieldset>\n                    <h2>500 - Internal server error.</h2>\n                    <h3>There is a problem with the resource you are looking for, and it cannot be displayed.</h3>\n                </fieldset>\n            </div>\n        </div>\n    </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "name": "TC #29 Negative - Empty Body",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a request with no body. Expects a SOAP fault or HTTP 400/500."
+      },
+      "response": [
+        {
+          "name": "TC #29 Negative - Empty Body",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 500
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:19:12 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "1208"
+            }
+          ],
+          "cookie": [],
+          "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n    <head>\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\n        <title>500 - Internal server error.</title>\n        <style type=\"text/css\">\n            <!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px 10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;} \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0 0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n\n        </style>\n    </head>\n    <body>\n        <div id=\"header\">\n            <h1>Server Error</h1>\n        </div>\n        <div id=\"content\">\n            <div class=\"content-container\">\n                <fieldset>\n                    <h2>500 - Internal server error.</h2>\n                    <h3>There is a problem with the resource you are looking for, and it cannot be displayed.</h3>\n                </fieldset>\n            </div>\n        </div>\n    </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "name": "TC #30 Negative - Wrong SOAP Operation Name",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13XYZ xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13XYZ>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a SOAP request with a non-existent operation name in the body. Expects a SOAP fault."
+      },
+      "response": [
+        {
+          "name": "TC #30 Negative - Wrong SOAP Operation Name",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13XYZ xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13XYZ>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 500
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:19:32 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "1208"
+            }
+          ],
+          "cookie": [],
+          "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n    <head>\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\n        <title>500 - Internal server error.</title>\n        <style type=\"text/css\">\n            <!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px 10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;} \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0 0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n\n        </style>\n    </head>\n    <body>\n        <div id=\"header\">\n            <h1>Server Error</h1>\n        </div>\n        <div id=\"content\">\n            <div class=\"content-container\">\n                <fieldset>\n                    <h2>500 - Internal server error.</h2>\n                    <h3>There is a problem with the resource you are looking for, and it cannot be displayed.</h3>\n                </fieldset>\n            </div>\n        </div>\n    </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "name": "TC #31 Negative - Missing sISBN Element",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a valid SOAP envelope but omits the required sISBN parameter element. Expects a SOAP fault or default/error response."
+      },
+      "response": [
+        {
+          "name": "TC #31 Negative - Missing sISBN Element",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 500
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:19:45 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "1208"
+            }
+          ],
+          "cookie": [],
+          "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n    <head>\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\n        <title>500 - Internal server error.</title>\n        <style type=\"text/css\">\n            <!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px 10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;} \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0 0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n\n        </style>\n    </head>\n    <body>\n        <div id=\"header\">\n            <h1>Server Error</h1>\n        </div>\n        <div id=\"content\">\n            <div class=\"content-container\">\n                <fieldset>\n                    <h2>500 - Internal server error.</h2>\n                    <h3>There is a problem with the resource you are looking for, and it cannot be displayed.</h3>\n                </fieldset>\n            </div>\n        </div>\n    </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "name": "TC #32 Negative - Wrong Namespace",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://wrong.namespace.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a SOAP request with an incorrect XML namespace. Expects a SOAP fault or unrecognized operation error."
+      },
+      "response": [
+        {
+          "name": "TC #32 Negative - Wrong Namespace",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://wrong.namespace.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 500
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:20:05 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "1208"
+            }
+          ],
+          "cookie": [],
+          "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n    <head>\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\n        <title>500 - Internal server error.</title>\n        <style type=\"text/css\">\n            <!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px 10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;} \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0 0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n\n        </style>\n    </head>\n    <body>\n        <div id=\"header\">\n            <h1>Server Error</h1>\n        </div>\n        <div id=\"content\">\n            <div class=\"content-container\">\n                <fieldset>\n                    <h2>500 - Internal server error.</h2>\n                    <h3>There is a problem with the resource you are looking for, and it cannot be displayed.</h3>\n                </fieldset>\n            </div>\n        </div>\n    </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "name": "TC #33 Negative - Extra Unexpected Elements in Body",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n      <extraElement>unexpected</extraElement>\n      <anotherJunk>junk</anotherJunk>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a SOAP request with extra unexpected elements alongside the valid sISBN element. Expects the service to either ignore extras or return a fault."
+      },
+      "response": [
+        {
+          "name": "TC #33 Negative - Extra Unexpected Elements in Body",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n      <extraElement>unexpected</extraElement>\n      <anotherJunk>junk</anotherJunk>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 500
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:20:17 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "1208"
+            }
+          ],
+          "cookie": [],
+          "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n    <head>\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\n        <title>500 - Internal server error.</title>\n        <style type=\"text/css\">\n            <!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px 10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;} \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0 0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n\n        </style>\n    </head>\n    <body>\n        <div id=\"header\">\n            <h1>Server Error</h1>\n        </div>\n        <div id=\"content\">\n            <div class=\"content-container\">\n                <fieldset>\n                    <h2>500 - Internal server error.</h2>\n                    <h3>There is a problem with the resource you are looking for, and it cannot be displayed.</h3>\n                </fieldset>\n            </div>\n        </div>\n    </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "name": "TC #34 Negative - GET Method",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a GET request to a SOAP endpoint that only accepts POST. Expects a 405 Method Not Allowed or similar error."
+      },
+      "response": [
+        {
+          "name": "TC #34 Negative - GET Method",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:20:32 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "1018"
+            }
+          ],
+          "cookie": [],
+          "body": "<html xmlns:wso=\"http://www.dataaccess.com/schemas/WebServiceMetaData\">\n    <head>\n        <META http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n        <style type=\"text/css\">\r\n                    body\r\n                    {\r\n                        margin-left: 2em;\r\n                    }                \r\n                    h1\r\n                    {\r\n                        margin-left: -0.8em;\r\n                    }                \r\n                    h2\r\n                    {\r\n                        margin-left: -0.8em;\r\n                        border-top: 1px solid;\r\n                    }                \r\n                    h3\r\n                    {\r\n                        margin-left: -0.8em;\r\n                    }                \r\n                    .title\r\n                    {\r\n                        margin-left: -0.8em;\r\n                        color: #000080;\r\n                        font-size: 1.7em;\r\n                        background-color: #99ccff;\r\n                        padding-top: 0.3em;\r\n                        padding-bottom: 0.3em;\r\n                    } \r\n                    .intro\r\n                    {\r\n                        margin-left: -0.8em;\r\n                    }\r\n                    .frmheader\r\n                    {\r\n                        background: #dcdcdc;\r\n                        padding-top: 0.1em;\r\n                        padding-bottom: 0.2em;\r\n                    }\r\n                    .code\r\n                    {\r\n                        font-family: 'Courier New';\r\n                        background-color: lightyellow;\r\n                        padding: 0.3em;\r\n                    }\r\n                    font.value\r\n                    {\r\n                        color: darkblue;\r\n                        font: bold;\r\n                    }\r\n                    font.key\r\n                    {\r\n                        color: darkgreen;\r\n                        font: bold;\r\n                    }\r\n                </style>\n        <title>DataFlex Web Service for testing ISBN Numbers</title>\n    </head>\n    <body>\n        <center>\n            <p class=\"title\">DataFlex Web Service for testing ISBN Numbers</p>\n        </center>\n        <p>\n            <span>DataFlex Web Service to validate ISBN numbers.</span>\n        </p>\r\n                The following operations are available. For a formal definition, please review the\n        <a href=\"/services/isbnservice.wso?WSDL\">Service Description</a>.\n        <ul>\n            <li>\n                <b>\n                    <a href=\"/services/isbnservice.wso?op=IsValidISBN13\">IsValidISBN13</a>\n                </b>\n                <br>\n                <span>The test is done by calculation on the first 12 digits and compare the result with the checksum number at the end. You have to pass a 13 digits number.</span>\n            </li>\n            <p></p>\n            <li>\n                <b>\n                    <a href=\"/services/isbnservice.wso?op=IsValidISBN10\">IsValidISBN10</a>\n                </b>\n                <br>\n                <span>The test is done by calculation on the first 9 digits and compare the result with the checksum number at the end. You have to pass a 10 digits number or 8 digits and an X.</span>\n            </li>\n            <p></p>\n        </ul>\n    </body>\n</html>"
+        }
+      ]
+    },
+    {
+      "name": "TC #35 Negative - PUT Method",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a PUT request to the SOAP endpoint. Expects a 405 Method Not Allowed."
+      },
+      "response": [
+        {
+          "name": "TC #35 Negative - PUT Method",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-0-306-40615-7</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 400
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:20:45 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "11"
+            }
+          ],
+          "cookie": [],
+          "body": "Bad Request"
+        }
+      ]
+    },
+    {
+      "name": "TC #36 Negative - DELETE Method",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a DELETE request to the SOAP endpoint. Expects a 405 Method Not Allowed."
+      },
+      "response": [
+        {
+          "name": "TC #36 Negative - DELETE Method",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 400
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:21:00 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "11"
+            }
+          ],
+          "cookie": [],
+          "body": "Bad Request"
+        }
+      ]
+    },
+    {
+      "name": "TC #37 Positive - Valid ISBN-10",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN10 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>0-306-40615-2</sISBN>\n    </IsValidISBN10>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a valid ISBN-10 value using the IsValidISBN10 operation. Expects a true result."
+      },
+      "response": [
+        {
+          "name": "TC #37 Positive - Valid ISBN-10",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN10 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>0-306-40615-2</sISBN>\n    </IsValidISBN10>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:21:15 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "302"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN10Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN10Result>true</m:IsValidISBN10Result>\n        </m:IsValidISBN10Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #38 Negative - ISBN-13 with only 12 digits (boundary)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978030640615</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a 12-digit number (one digit short of a valid ISBN-13). Expects a false result."
+      },
+      "response": [
+        {
+          "name": "TC #38 Negative - ISBN-13 with only 12 digits (boundary)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978030640615</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:21:30 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    },
+    {
+      "name": "TC #39 Negative - ISBN-13 with 14 digits (boundary)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>97803064061570</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+          "protocol": "https",
+          "host": [
+            "webservices",
+            "daehosting",
+            "com"
+          ],
+          "path": [
+            "services",
+            "isbnservice.wso"
+          ]
+        },
+        "description": "Sends a 14-digit number (one digit over a valid ISBN-13). Expects a false result."
+      },
+      "response": [
+        {
+          "name": "TC #39 Negative - ISBN-13 with 14 digits (boundary)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>97803064061570</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "https",
+              "host": [
+                "webservices",
+                "daehosting",
+                "com"
+              ],
+              "path": [
+                "services",
+                "isbnservice.wso"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0"
+            },
+            {
+              "key": "content-type",
+              "value": "text/xml; charset=utf-8"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "server",
+              "value": "Microsoft-IIS/10.0"
+            },
+            {
+              "key": "web-service",
+              "value": "DataFlex 18.2"
+            },
+            {
+              "key": "permissions-policy",
+              "value": "interest-cohort=()"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15768000;includeSubdomains"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "content-security-policy",
+              "value": "default-src * data: 'unsafe-inline' 'unsafe-eval'; form-action 'self'; frame-ancestors 'self';"
+            },
+            {
+              "key": "date",
+              "value": "Thu, 09 Jul 2026 12:21:46 GMT"
+            },
+            {
+              "key": "content-length",
+              "value": "303"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:IsValidISBN13Response xmlns:m=\"http://webservices.daehosting.com/ISBN\">\n            <m:IsValidISBN13Result>false</m:IsValidISBN13Result>\n        </m:IsValidISBN13Response>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    }
+  ]
+}
